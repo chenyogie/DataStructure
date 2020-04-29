@@ -1,0 +1,4 @@
+target/   # 忽略targer目录
+out/     # 忽略.out目录
+.idea/    # 忽略.idea目录
+*.iml     # 忽略*.iml配置文件
