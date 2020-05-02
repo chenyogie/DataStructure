@@ -130,8 +130,10 @@ public class SingleList<T> {
         if (first == null || length == 0) {
             return null;
         } else {
+            //倒数第二个节点的index
+            int previous = (length-1)-1;
             Node<T> node = getNode(length - 1);
-            node.setNext(null);
+            getNode(previous).setNext(null);
             last = node;
             length--;
             return last.getData();
@@ -147,14 +149,13 @@ public class SingleList<T> {
         if (position < 0 || position >= length) {
             return null;
         } else {
-            int temp = 0;
-            Node<T> item = first;
-            while (item != null && temp <= position - 1) {
-                item = item.getNext();
-                temp++;
-            }
+            T data = getNode(position).getData();
+            //获取被删除的节点的上一个节点
+            Node<T> previous = getNode(position - 1);
+            //将上一个节点的后继节点设置为下一个节点
+            previous.setNext(getNode(position).getNext());
             length--;
-            return item.getData();
+            return data;
         }
     }
 
@@ -227,4 +228,5 @@ public class SingleList<T> {
         int lastIndexOfMark = sb.lastIndexOf(",");
         return sb.replace(lastIndexOfMark, lastIndexOfMark + 1, "]").toString();
     }
+
 }
